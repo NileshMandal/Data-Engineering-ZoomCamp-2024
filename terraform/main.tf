@@ -12,3 +12,9 @@ provider "google" {
   project     = "de-zoomcamp-2024-412209"
   region      = "us-central1"
 }
+
+resource "google_storage_bucket" "bucket-demo" {
+  name          = "de-bucket--2024"
+  location      = "US"
+  force_destroy = true
+  }
