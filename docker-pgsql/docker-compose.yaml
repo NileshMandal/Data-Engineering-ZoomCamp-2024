@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   postgres:
     image: postgres:13
@@ -8,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./ny_taxi_postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
@@ -16,7 +18,4 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
-      - "8080:80"  # Change the port from 8080 to 8090
-
-volumes:
-  postgres_data:
+      - "9090:80"   # Change the host port from 9090 to 9091
