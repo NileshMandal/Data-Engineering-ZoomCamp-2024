@@ -9,29 +9,17 @@ terraform {
 
 provider "google" {
   # Configuration options
-  project = "de-zoomcamp-2024-412209"
-  region  = "us-central1"
+  credentials = file(var.credentials)
+  project     = var.project
+  region      = var.region
 }
 
 resource "google_storage_bucket" "bucket-demo" {
-  name          = "data-bucket-2024"
-  location      = "US"
-  force_destroy = true
+  name     = var.gcs_bucket_name
+  location = var.location
 }
 
 resource "google_bigquery_dataset" "dataset" {
-  dataset_id                  = "data_zoomcamp_2024"
-  friendly_name               = "test"
-  description                 = "dataset for test"
-  location                    = "EU"
-  default_table_expiration_ms = 3600000
-
-  labels = {
-    env = "default"
-  }
-
-  access {
-    role   = "READER"
-    domain = "hashicorp.com"
-  }
+  dataset_id = var.bigquery_dataset_name
+  location   = var.location
 }
